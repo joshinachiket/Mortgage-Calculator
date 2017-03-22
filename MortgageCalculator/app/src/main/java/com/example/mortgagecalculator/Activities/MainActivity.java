@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity
 
     // Member variables from Layout
 
+    private MenuItem reset_action;
     private EditText mDownPayment;
     private EditText mPropertyAmount;
     private EditText mRate;
@@ -338,6 +340,8 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        reset_action = menu.findItem(R.id.action_reset);
+        reset_action.setTitle("Start New Calculation");
         return true;
     }
 

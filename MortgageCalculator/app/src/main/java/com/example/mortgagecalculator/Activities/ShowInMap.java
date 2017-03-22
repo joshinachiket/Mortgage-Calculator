@@ -48,8 +48,8 @@ import java.util.List;
 public class ShowInMap extends AppCompatActivity implements OnMapReadyCallback,NavigationView.OnNavigationItemSelectedListener
 {
 
-     private ArrayList<Datafields> homelist = new ArrayList<Datafields>();
-
+    private ArrayList<Datafields> homelist = new ArrayList<Datafields>();
+    private MenuItem reset_action;
     private List<Address> temp = null;
     private HashMap<Marker,Datafields> infowindows = new HashMap<Marker, Datafields>();
     private Address location = null;
@@ -142,7 +142,7 @@ public class ShowInMap extends AppCompatActivity implements OnMapReadyCallback,N
                             .position(p1));
 
                     infowindows.put(marker,home);
-                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 10.0f));
+                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 15.0f));
 
                 }catch (Exception ee) {
                     System.out.println("Got Ex");
@@ -246,6 +246,8 @@ public class ShowInMap extends AppCompatActivity implements OnMapReadyCallback,N
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        reset_action = menu.findItem(R.id.action_reset);
+        reset_action.setTitle("Clear All Saved Homes");
         return true;
     }
 
@@ -268,6 +270,13 @@ public class ShowInMap extends AppCompatActivity implements OnMapReadyCallback,N
             startActivity(intent);
             overridePendingTransition(0, 0);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+            Context context = getApplicationContext();
+            CharSequence text = "All Homes Deleted..!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
         }
 
         return super.onOptionsItemSelected(item);

@@ -28,7 +28,7 @@
         </activity>
         <activity
             android:name=".Activities.ShowInMap"
-            android:label="Show in Map"
+            android:label="Homes' Locations"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
